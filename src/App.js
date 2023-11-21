@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './App.css'
 import { configure } from '@testing-library/react'
+import CellComponent from './CellComponent'
 
 const App = () => {
 const [order, setOrder] = useState([])
@@ -20,10 +21,14 @@ const config = [
    <div className='grid'>
 {config.flat(1).map((value,index)=>{
   return value ? (
-
+<CellComponent 
+//get propc
+key = {index}
+label = {`cell ${index}`}
+/>
   ):
    (
-    
+   <span/> 
    )
 
 })}
