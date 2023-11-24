@@ -16,9 +16,14 @@ body{
     gap: 20px;
     border: 1px solid black;
 }
+/* individual box */
 .cell{
     background-color: transparent;
     border: 1px solid black;
     padding-bottom: 100px;
     height: 0;
+
+}
+.cell-activated{
+    background-color: green;
 }

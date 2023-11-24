@@ -12,19 +12,49 @@ const config = [
   [1, 1, 1], 
   [1, 0, 1], 
   [1, 1, 1]
-]
 
+]
+//monday explain line 17  to 36
+const activatedCell =(index)=>{
+const newOrder = [...order,index]
+setOrder(newOrder)
+if (newOrder.length === config.flat(1).filter(Boolean).length){
+deActivateCells()
+}
+}
+const deActivateCells=()=>{
+  setIsDeactivating(true)
+  const timer = setInterval(()=>{
+    setOrder((originalOrder)=>{
+      const newOrder = originalOrder.slice()
+      newOrder.pop() //the last one that come in will be the first one to get out
+      if (newOrder.length === 0){
+        clearInterval(timer)
+        setIsDeactivating(false)
+      }
+      return newOrder
+    })
+  },300)
+  //300 mili second  is 3 second
+}
 
   return (
    <>
    <div className='wrapper'>
-   <div className='grid'>
+   <div className='grid' style={{gridTemplateColumns: `repeat(${config[0].length},1fr)`,}}>
+    {/* //length of the row */}
 {config.flat(1).map((value,index)=>{
   return value ? (
 <CellComponent 
 //get propc
 key = {index}
-label = {`cell ${index}`}
+label={`cell ${index}`}// pass label as props to cellcomponent
+filled = {order.includes(index)}
+//order is state line 7--every time we click cell it go by order.include( index )
+onClick = {()=>activatedCell(index)}
+isDisable = {order.includes(index) || isDeactivating}// line 8 -isDeactivating
+//we send filled - onclick - isDisable to our cellComponent
+
 />
   ):
    (
