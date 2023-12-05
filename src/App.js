@@ -14,14 +14,17 @@ const config = [
   [1, 1, 1]
 
 ]
-//monday explain line 17  to 36
+//1. addindex to new array-- use order to update
 const activatedCell =(index)=>{
 const newOrder = [...order,index]
+// ... spred operator copy from original array to new array when we add index to it
 setOrder(newOrder)
+//2. below deactivate -check if all boxes are clicked- if yes deActivateCells() this function work
 if (newOrder.length === config.flat(1).filter(Boolean).length){
 deActivateCells()
 }
 }
+//
 const deActivateCells=()=>{
   setIsDeactivating(true)
   const timer = setInterval(()=>{
